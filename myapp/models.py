@@ -35,10 +35,15 @@ class Actor(models.Model):
 class Genre(models.Model):
     name = models.CharField("Category", max_length=50)
     description = models.TextField('Description')
-    url = models.SlugField(max_length=100, unique=True, default=name)
+    url = models.SlugField(max_length=100, unique=True, default='', blank=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.url = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
 
 
 class Movie(models.Model):
