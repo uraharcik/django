@@ -1,0 +1,159 @@
+{%extends 'base.html'%}
+{% block title %} {{ movie.title }} {% endblock title %}
+{% block content %}
+{% load static %}
+    <link href="{% static 'css/rating.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/detail_carousel.css' %}" rel="stylesheet" >
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <div class="container">
+        <div class="row mt-2 justify-content-md-left">
+            <div class=" card col-md-auto border-0" style="max-height: none">
+                <img class="img-fluid card-img-top" src="{{ movie.poster.url }}" alt="" style="height: 500px; border:none;">
+            <div class="card-title ">
+                <div class="rating">
+                    <div class="rating_body">
+                        <div class="rating_active"></div>
+                            <div class="rating_items">
+                                <input type="radio" class="rating_item" value="1" name="rating">
+                                <input type="radio" class="rating_item" value="2" name="rating">
+                                <input type="radio" class="rating_item" value="3" name="rating">
+                                <input type="radio" class="rating_item" value="4" name="rating">
+                                <input type="radio" class="rating_item" value="5" name="rating">
+                                <input type="radio" class="rating_item" value="6" name="rating">
+                                <input type="radio" class="rating_item" value="7" name="rating">
+                                <input type="radio" class="rating_item" value="8" name="rating">
+                                <input type="radio" class="rating_item" value="9" name="rating">
+                                <input type="radio" class="rating_item" value="10" name="rating">
+                            </div>
+                        </div>
+
+                    <div class="rating_value">
+                        3.6
+                    </div>
+                </div>
+
+            </div>
+            </div>
+            <div class="col-md-auto">
+                <table class="table-borderless">
+                    <tbody class="px-1">
+                    <h3 class=" text-uppercase mt-1"><strong>{{ movie.title }}</strong></h3>
+                        <tr>
+                            <th scope="row">Year:</th>
+                            <td>{{ movie.year }}</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Country:</th>
+
+                            <td><a href="">{{ movie.country }}</a></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Tagline:</th>
+                            <td>{{ movie.tagline}}</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Genres:</th>
+                            <td>
+                                {% for genre in  movie.genres.all%}
+                                    <a href="" >
+                                    {{ genre.name }}
+                                    </a>
+                                {% endfor %}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Directors:</th>
+                            <td>
+                                {% for director in  movie.directors.all%}
+                                <a href="" >
+                                    {{ director.name }}
+                                </a>
+                                {% endfor %}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Actors:</th>
+                            <td>
+
+                                {% for actor in  movie.actors.all%}
+                                <a href="" >
+                                    {{ actor.name }}
+                                </a>
+                                {% endfor %}
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th scope="row">Premiere</th>
+                            <td>{{ movie.world_premiere }}</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Budget</th>
+                            <td>{{ movie.budget }} $</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Fees in USA</th>
+                            <td>{{ movie.fees_in_usa }} $</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Fees in world</th>
+                            <td>{{ movie.fees_in_world }} $</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">iMDb Rating</th>
+                            <td>{{ movie.imdb_ratting }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                  <div class="social-links social-icons">
+                                      <a href="#"><i class="fa fa-facebook"></i></a>
+                                      <a href="#"><i class="fa fa-twitter"></i></a>
+                                      <a href="#"><i class="fa fa-linkedin"></i></a>
+                                      <a href="#"><i class="fa fa-github"></i></a>
+                                  </div>
+                            </th>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+            <h5 class="display-5 text-center"> Story line</h5>
+               <p class="align-self-end">
+            {{ movie.description }}
+        </p>
+        </div>
+
+        <h5 class="display-5 text-center"> Movie shots</h5>
+         <div class="items">
+             {% for image in movie.movieshots_set.all %}
+            <div><img src="{{ image.image.url }}" class="img-fluid"></div>
+            {% endfor %}
+        </div>
+        <h5 class="display-5 text-center"> Trailer</h5>
+        <div class="ratio ratio-16x9">
+            <iframe
+              src="{{ movie.trailer}}"
+              title="YouTube video"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+      </div>
+    <script src="{% static 'js/carousel.js' %}"></script>
+    <script src="{% static 'js/rating.js' %}"></script>
+
+{% endblock %}

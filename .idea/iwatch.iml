@@ -18,6 +18,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="42d5adcbca" level="application" />
+    <orderEntry type="library" name="slick-theme" level="application" />
+    <orderEntry type="library" name="slick-carousel" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="slick" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

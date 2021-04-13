@@ -1,0 +1,143 @@
+{% extends 'myapp/base.html' %}
+{% block content%}
+<div class="wrapper">
+  <div class="container">
+    <h1 class="text-primary mt-1">Movies<span class="badge bg-gradient-warning" style = "font-size: 13px; vertical-align:top;">New</span></h1>
+    <br>
+    <div class="container">
+      <div class="row">
+          {% for movie in movie_list %}
+          <div class="col-sm-3 col-md-3">
+              <div class="card p-0">
+                  <div class="card-image"> <img src="{{ movie.poster.url }}" alt=""> </div>
+                  <div class="card-content d-flex flex-column align-items-center">
+                      <h4 class="pt-2"><a href="{{movie.get_absolute_url}}">
+                          {{movie.title}}
+                      </a></h4>
+                      <h5>{{movie.year}}</h5>
+                      <ul class="social-icons d-flex justify-content-center">
+                          <li style="--i:1">  <span class="fa fa-imdb fa-2x"> </span>: 7.5</li>
+
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+  <hr>
+  </div>
+
+</div>
+
+<div class="wrapper">
+  <div class="container">
+    <h1 class="text-primary">TV-shows<span class="badge bg-gradient-warning" style = "font-size: 13px; vertical-align:top;">New</span></h1>
+    <br>
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-3 col-md-3">
+              <div class="card p-0">
+                  <div class="card-image"> <img src="https://images.pexels.com/photos/2746187/pexels-photo-2746187.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> </div>
+                  <div class="card-content d-flex flex-column align-items-center">
+                      <h4 class="pt-2">SomeOne Famous</h4>
+                      <h5>Creative Desinger</h5>
+                      <ul class="social-icons d-flex justify-content-center">
+                          <li style="--i:1"> <a href="#"> <span class="fab fa-facebook"></span> </a> </li>
+                          <li style="--i:2"> <a href="#"> <span class="fab fa-twitter"></span> </a> </li>
+                          <li style="--i:3"> <a href="#"> <span class="fab fa-instagram"></span> </a> </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-sm-3 col-md-3">
+              <div class="card p-0">
+                  <div class="card-image"> <img src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> </div>
+                  <div class="card-content d-flex flex-column align-items-center">
+                      <h4 class="pt-2">SomeOne Famous</h4>
+                      <h5>Creative Desinger</h5>
+                      <ul class="social-icons d-flex justify-content-center">
+                          <li style="--i:1"> <a href="#"> <span class="fa fa-imdb fa-2x" ></span> </a> </li>
+                          <li style="--i:2"> <a href="#"> <span class="fab fa-twitter"></span> </a> </li>
+                          <li style="--i:3"> <a href="#"> <span class="fab fa-instagram"></span> </a> </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <div class="card p-0">
+                <div class="card-image"> <img src="https://images.pexels.com/photos/381843/pexels-photo-381843.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> </div>
+                <div class="card-content d-flex flex-column align-items-center">
+                    <h4 class="pt-2">SomeOne Famous</h4>
+                    <h5>Creative Desinger</h5>
+                    <ul class="social-icons d-flex justify-content-center">
+                        <li style="--i:1"> <a href="#"> <span class="fab fa-facebook"></span> </a> </li>
+                        <li style="--i:2"> <a href="#"> <span class="fab fa-twitter"></span> </a> </li>
+                        <li style="--i:3"> <a href="#"> <span class="fab fa-instagram"></span> </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3">
+          <div class="card p-0">
+              <div class="card-image"> <img src="https://images.pexels.com/photos/381843/pexels-photo-381843.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> </div>
+              <div class="card-content d-flex flex-column align-items-center">
+                  <h4 class="pt-2">SomeOne Famous</h4>
+                  <h5>Creative Desinger</h5>
+                  <ul class="social-icons d-flex justify-content-center">
+                      <li style="--i:1"> <a href="#"> <span class="fab fa-facebook"></span> </a> </li>
+                      <li style="--i:2"> <a href="#"> <span class="fab fa-twitter"></span> </a> </li>
+                      <li style="--i:3"> <a href="#"> <span class="fab fa-instagram"></span> </a> </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div class="card p-0">
+            <div class="card-image"> <img src="https://images.pexels.com/photos/381843/pexels-photo-381843.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> </div>
+            <div class="card-content d-flex flex-column align-items-center">
+                <h4 class="pt-2">SomeOne Famous</h4>
+                <h5>Creative Desinger</h5>
+                <ul class="social-icons d-flex justify-content-center">
+                    <li style="--i:1"> <a href="#"> <span class="fab fa-facebook"></span> </a> </li>
+                    <li style="--i:2"> <a href="#"> <span class="fab fa-twitter"></span> </a> </li>
+                    <li style="--i:3"> <a href="#"> <span class="fab fa-instagram"></span> </a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <div class="card p-0">
+          <div class="card-image"> <img src="https://images.pexels.com/photos/381843/pexels-photo-381843.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> </div>
+          <div class="card-content d-flex flex-column align-items-center">
+              <h4 class="pt-2">SomeOne Famous</h4>
+              <h5>Creative Desinger</h5>
+              <ul class="social-icons d-flex justify-content-center">
+                  <li style="--i:1"> <a href="#"> <span class="fab fa-facebook"></span> </a> </li>
+                  <li style="--i:2"> <a href="#"> <span class="fab fa-twitter"></span> </a> </li>
+                  <li style="--i:3"> <a href="#"> <span class="fab fa-instagram"></span> </a> </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <div class="col-sm-3 col-md-3">
+    <div class="card p-0">
+        <div class="card-image"> <img src="https://images.pexels.com/photos/381843/pexels-photo-381843.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> </div>
+        <div class="card-content d-flex flex-column align-items-center">
+            <h4 class="pt-2">SomeOne Famous</h4>
+            <h5>Creative Desinger</h5>
+            <ul class="social-icons d-flex justify-content-center">
+                <li style="--i:1"> <a href="#"> <span class="fab fa-facebook"></span> </a> </li>
+                <li style="--i:2"> <a href="#"> <span class="fab fa-twitter"></span> </a> </li>
+                <li style="--i:3"> <a href="#"> <span class="fab fa-instagram"></span> </a> </li>
+            </ul>
+        </div>
+    </div>
+</div>
+      </div>
+  </div>
+  </div>
+</div>
+
+{% endblock %}

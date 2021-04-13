@@ -33,7 +33,7 @@ class Actor(models.Model):
 
 
 class Genre(models.Model):
-    name = models.CharField("Category", max_length=50)
+    name = models.CharField("Genre", max_length=50)
     description = models.TextField('Description')
     url = models.SlugField(max_length=100, unique=True, default='', blank=True)
 
@@ -51,7 +51,7 @@ class Movie(models.Model):
     tagline = models.CharField('Tagline', max_length=100, default='')
     description = models.TextField('Description')
     poster = models.ImageField('Image', upload_to='movie/')
-    year = models.DateField('Year')
+    year = models.IntegerField('Year', default='')
     country = models.CharField('Conuntry', max_length=50)
     directors = models.ManyToManyField(Actor, verbose_name='Director', related_name='film_director')
     actors = models.ManyToManyField(Actor, verbose_name='Actors', related_name='film_actor')
@@ -62,6 +62,7 @@ class Movie(models.Model):
     fees_in_usa = models.PositiveIntegerField('Fees in USA', default=0, help_text='Indicate in $')
     fees_in_world= models.PositiveIntegerField('Fees in world', default=0, help_text='Indicate in $')
     category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.SET_NULL, null=True)
+    trailer = models.CharField('Trailer', max_length=200, default='')
     url = models.SlugField(max_length=100, unique=True, blank=True, default='')
     draft = models.BooleanField('Draft', default=False)
 
