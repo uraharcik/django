@@ -1,6 +1,6 @@
 from django.utils.text import slugify
 from django.db import models
-from datetime import date
+from datetime import date, datetime
 
 from django.urls import reverse
 
@@ -66,6 +66,9 @@ class Movie(models.Model):
     url = models.SlugField(max_length=100, unique=True, blank=True, default='')
     draft = models.BooleanField('Draft', default=False)
 
+    def get_review(self):
+        return self.reviews_set.filter(parent__isnull=True)
+
     def __str__(self):
         return self.title
 
@@ -107,8 +110,9 @@ class Ratting(models.Model):
 class Reviews(models.Model):
 
     email = models.EmailField()
-    name = models.CharField("Category", max_length=100)
+    name = models.CharField("Name", max_length=100)
     text = models.TextField('Description')
+    date = models.DateTimeField(default=datetime.now, editable=False)
     parent = models.ForeignKey('self', verbose_name='Parent', on_delete=models.SET_NULL, blank=True, null=True)
     movie = models.ForeignKey(Movie, verbose_name='Movie', on_delete=models.CASCADE)
 

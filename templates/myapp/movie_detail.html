@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="row mt-2 justify-content-md-left">
-            <div class=" card col-md-auto border-0" style="max-height: none">
+            <div class=" card  col-md-auto border-0" style="max-height: none">
                 <img class="img-fluid card-img-top" src="{{ movie.poster.url }}" alt="" style="height: 500px; border:none;">
             <div class="card-title ">
                 <div class="rating">
@@ -152,7 +152,97 @@
             ></iframe>
           </div>
 
-      </div>
+        <div class="be-comment-block mt-6">
+
+            <h3 class="comments-title">Comments ({{ movie.reviews_set.count }})</h3>
+        <form class="form-block" method="post" action="{% url 'add_review' movie.id %}" id="formReview">
+                {% csrf_token %}
+                <div class="row">
+                    <input type="hidden" name="parent" id="contact-parent" value="">
+                    <div class="col-xs-12 col-sm-6 mb-2">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-user" ></i></span>
+                            <input class="form-control" type="text" placeholder="Your name"  name="name" aria-label="Username">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 mb-2">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                            <input class="form-control" type="text" placeholder="Your email" name="email">
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <textarea class="form-control" required="" rows="4" placeholder="Your text" name="text" id="contact-comment"></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary pull-right" type="submit">submit</button>
+                </div>
+            </form>
+            {% for review in movie.get_review %}
+
+            <div class="row justify-content-md-left">
+                <div class="col-md-auto mt-3" style="display: inline-flex; align-items: center;">
+                <a href="javascript:;" class="avatar avatar-lg rounded-circle">
+                        <img alt="Image placeholder" src="{% static 'img/team-2.jpg' %}">
+                </a>
+                           <h5 class="name ps-3">
+                        {{ review.name }}
+                            </h5>
+                                 <span class="mx-2">
+                                     <small>
+                            <i class="fa fa-clock-o"></i>
+                        {{ review.date }}
+                                         </small>
+                    </span>
+                </div>
+                    </div>
+
+                    <div class="card card-frame" style="max-height: 100%; max-width: 100%">
+                        <p class="px-3 text-md-left">{{ review.text }}</p>
+                        <span class="text-gradient text-primary text-uppercase text-xs font-weight-bold my-2 mx-2 align-self-end">
+                            <a href="#formReview" onclick="addReview('{{ review.name }}', '{{ review.id }}')"><i class="ni ni-chat-round"></i> Reply</a>
+                        </span>
+                    </div>
+                {% for rew in review.reviews_set.all %}
+                <div class="row justify-content-md-center">
+                <div class="col-md-auto mt-3 d-flex">
+                <a href="javascript:" class="avatar avatar-lg rounded-circle">
+                        <img alt="Image placeholder" src="{% static 'img/team-2.jpg' %}">
+                </a>
+                           <h5 class="name ps-3">
+                        {{ rew.name }}
+                            </h5>
+                                 <span class="mx-2">
+                                     <small>
+                            <i class="fa fa-clock-o"></i>
+                        {{ rew.date }}
+                                         </small>
+                    </span>
+
+                </div>
+
+                    </div>
+                <div class="row justify-content-md-end">
+                <div class="card card-frame align-items-lg-end" style="max-height: 100%; max-width: 60%;">
+                        <p class="px-3 text-md-left">{{ rew.text }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+
+
+        </div>
+    </div>
+    <script>
+    function addReview(name, id) {
+        document.getElementById("contact-parent").value = id;
+        document.getElementById("contact-comment").innerText = `${name}, `
+
+
+    }
+    </script>
     <script src="{% static 'js/carousel.js' %}"></script>
     <script src="{% static 'js/rating.js' %}"></script>
 
