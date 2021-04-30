@@ -1,0 +1,53 @@
+<section class="py-3">
+  <div class="container">
+    <div class="row justify-space-between py-2">
+      <div class="col-lg-4 mx-auto">
+        <ul class="pagination pagination-primary m-4">
+
+        {% if page_obj.has_previous %}
+                {% if page_obj.number|add:'-3' > 1 %}
+                      <li class="page-item active">
+                        <a class="page-link" href="javascript:;?{{ genre }}{{ year }}page=1">1</a>
+                      </li>
+                {% endif %}
+
+                {% if page_obj.number|add:'-3' >= 3 %}
+                      <li class="page-item">
+                        <a class="page-link" href="?{{ genre }}{{ year }}page={{ page_obj.previous_page_number|add:'-3' }}" aria-label="Next">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                        </a>
+                      </li>
+                {% endif %}
+        {% endif %}
+
+        {% if paginator.page_range|length > 1 %}
+            {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+
+                  <li class="page-item active">
+                    <a class="page-link" href="javascript:;">{{ i }}</a>
+                  </li>
+
+                {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
+
+                    <li class="page-item">
+                        <a class="page-link" href="?{{ genre }}{{ year }}page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            {% if page_obj.number|add:'4' < page_obj.paginator.num_pages %}
+                 <li class="page-item">
+                        <a class="page-link" href="?{{ genre }}{{ year }}page={{ page_obj.next_page_number|add:'3' }}">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                        </a>
+                 </li>
+            {% endif %}
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

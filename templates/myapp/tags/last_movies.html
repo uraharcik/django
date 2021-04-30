@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <div class="container">
+    <h1 class="text-primary mt-1">Movies<span class="badge bg-gradient-warning" style = "font-size: 13px; vertical-align:top;">New</span></h1>
+    <br>
+
+      <div class="row">
+          {% for movie in last_movies %}
+          <div class="col-sm-3 col-md-3">
+              <div class="card p-0">
+                  <div class="card-image"> <img src="{{ movie.poster.url }}" alt=""> </div>
+                  <div class="card-content d-flex flex-column align-items-center">
+                      <h4 class="pt-2"><a href="{{movie.get_absolute_url}}">
+                                        {{movie.title}}
+                      </a>
+                      </h4>
+                      <h5>{{movie.year}}</h5>
+                      <ul class="social-icons d-flex justify-content-center">
+                          <li style="--i:1">  <span class="fa fa-imdb fa-2x"> </span>: 7.5</li>
+
+                      </ul>
+                  </div>
+                  <!--card-content d-flex flex-column align-items-cente-->
+              </div>
+                <!--card p-0-->
+          </div>
+        <!--col-sm-3 col-md-3-->
+          {% endfor %}
+      </div>
+      <!--Row-->
+  <hr>
+  </div>
+<!--Container-->
+</div>
+<!--Wrapper-->

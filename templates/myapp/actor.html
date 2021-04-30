@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ actor.name }} {% endblock title %}
+{% block content%}
+    <div class="container">
+    <div class="row mt-2 justify-content-md-left">
+        <div class="card col-md-auto border-0" style="height: 500px; border:none;">
+                <img src="{{ actor.img.url }}" alt="" class="img-fluid card-img-top">
+        </div>
+        <div class="col-md-4">
+            <h3 class=" text-uppercase mt-1"><strong>{{ actor.name }}</strong></h3>
+            <dl class="row">
+              <dt class="col-sm-4">Date of birth</dt>
+              <dd class="col-sm-4">{{ actor.birth }}</dd>
+             </dl>
+            <h6>{{ actor.description }}</h6>
+        </div>
+    </div>
+    <h2 class="text-primary mt-1 text-center">Actor</h2>
+        <hr>
+         <div class="row">
+            {% for movie in actor.film_actor.all %}
+                <div class="col-sm-3 col-md-3">
+          <div class="card p-0">
+              <div class="card-image"> <img src="{{ movie.poster.url }}" alt=""> </div>
+              <div class="card-content d-flex flex-column align-items-center">
+                  <h4 class="pt-2"><a href="{{movie.get_absolute_url}}">
+                      {{movie.title}}
+                  </a></h4>
+                  <h5>{{movie.year}}</h5>
+                  <ul class="social-icons d-flex justify-content-center">
+                      <li style="--i:1">  <span class="fa fa-imdb fa-2x"> </span>: 7.5</li>
+
+                  </ul>
+              </div>
+          </div>
+      </div>
+            {% endfor %}
+         </div>
+
+    <h2 class="text-primary mt-1 text-center">Director</h2>
+    <hr>
+     <div class="row">
+        {% for movie in actor.film_director.all %}
+            <div class="col-sm-3 col-md-3">
+      <div class="card p-0">
+          <div class="card-image"> <img src="{{ movie.poster.url }}" alt=""> </div>
+          <div class="card-content d-flex flex-column align-items-center">
+              <h4 class="pt-2"><a href="{{movie.get_absolute_url}}">
+                  {{movie.title}}
+              </a></h4>
+              <h5>{{movie.year}}</h5>
+              <ul class="social-icons d-flex justify-content-center">
+                  <li style="--i:1">  <span class="fa fa-imdb fa-2x"> </span>: 7.5</li>
+
+              </ul>
+          </div>
+      </div>
+  </div>
+        {% endfor %}
+     </div>
+    </div>
+{% endblock content %}

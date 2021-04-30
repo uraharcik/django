@@ -2,6 +2,7 @@
 {% block title %} {{ movie.title }} {% endblock title %}
 {% block content %}
 {% load static %}
+
     <link href="{% static 'css/rating.css' %}" rel="stylesheet" >
     <link href="{% static 'css/detail_carousel.css' %}" rel="stylesheet" >
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -61,7 +62,7 @@
                             <td>
                                 {% for genre in  movie.genres.all%}
                                     <a href="" >
-                                    {{ genre.name }}
+                                    {{ genre.name }}{% if not forloop.last %}, {% endif %}
                                     </a>
                                 {% endfor %}
                             </td>
@@ -71,8 +72,8 @@
                             <th scope="row">Directors:</th>
                             <td>
                                 {% for director in  movie.directors.all%}
-                                <a href="" >
-                                    {{ director.name }}
+                                <a href="{{director.get_absolute_url}}" >
+                                    {{ director.name }}{% if not forloop.last %}, {% endif %}
                                 </a>
                                 {% endfor %}
                             </td>
@@ -83,8 +84,8 @@
                             <td>
 
                                 {% for actor in  movie.actors.all%}
-                                <a href="" >
-                                    {{ actor.name }}
+                                <a href="{{actor.get_absolute_url}}" >
+                                {{actor.name}}{% if not forloop.last %}, {% endif %}
                                 </a>
                                 {% endfor %}
                             </td>
@@ -133,7 +134,7 @@
             </div>
             <h5 class="display-5 text-center"> Story line</h5>
                <p class="align-self-end">
-            {{ movie.description }}
+            {{ movie.description|safe }}
         </p>
         </div>
 
@@ -162,21 +163,22 @@
                     <div class="col-xs-12 col-sm-6 mb-2">
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-user" ></i></span>
-                            <input class="form-control" type="text" placeholder="Your name"  name="name" aria-label="Username">
+                            {{ form.name }}
                         </div>
                     </div>
 
                     <div class="col-xs-12 col-sm-6 mb-2">
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
-                            <input class="form-control" type="text" placeholder="Your email" name="email">
+                            {{ form.email }}
                         </div>
                     </div>
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <textarea class="form-control" required="" rows="4" placeholder="Your text" name="text" id="contact-comment"></textarea>
+                            {{ form.text }}
                         </div>
                     </div>
+                    {{ form.captcha }}
                     <button class="btn btn-primary pull-right" type="submit">submit</button>
                 </div>
             </form>
@@ -199,7 +201,7 @@
                 </div>
                     </div>
 
-                    <div class="card card-frame" style="max-height: 100%; max-width: 100%">
+                    <div class="card card-frame" style="max-height: 100%; max-width: 60%">
                         <p class="px-3 text-md-left">{{ review.text }}</p>
                         <span class="text-gradient text-primary text-uppercase text-xs font-weight-bold my-2 mx-2 align-self-end">
                             <a href="#formReview" onclick="addReview('{{ review.name }}', '{{ review.id }}')"><i class="ni ni-chat-round"></i> Reply</a>
